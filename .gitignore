@@ -1,4 +1,9 @@
+# Node.js
+node_modules/
+dist/
 
+# Tauri / Rust
+src-tauri/target/
 
 # IDE
 .idea/
