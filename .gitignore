@@ -1,0 +1,22 @@
+# Node.js
+node_modules/
+dist/
+
+# Tauri / Rust
+src-tauri/target/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# macOS
+.DS_Store
+
+# 日志
+*.log
+
+# 本地可执行文件（构建产物由 GitHub Actions 管理）
+ftool.exe
+*.dmg
