@@ -33,9 +33,9 @@ jobs:
           path: src-tauri/target/release/ftool.exe
 
   build-macos-intel:
-    runs-on: macos-12 # 兼容 macOS 10.15 (Catalina) 及以上
+    runs-on: macos-12
     env:
-      MACOSX_DEPLOYMENT_TARGET: "10.15"
+      MACOSX_DEPLOYMENT_TARGET: "10.13"
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
