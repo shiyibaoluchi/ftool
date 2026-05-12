@@ -32,26 +32,6 @@ jobs:
           name: ftool-windows
           path: src-tauri/target/release/ftool.exe
 
-  build-macos-intel:
-    runs-on: macos-13
-    env:
-      MACOSX_DEPLOYMENT_TARGET: "10.13"
-    steps:
-      - uses: actions/checkout@v4
-      - uses: dtolnay/rust-toolchain@stable
-        with:
-          targets: x86_64-apple-darwin
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: "npm"
-      - run: npm install
-      - run: npm run tauri build
-      - uses: actions/upload-artifact@v4
-        with:
-          name: ftool-macos-intel
-          path: src-tauri/target/release/bundle/dmg/ftool_*.dmg
-
   build-macos-silicon:
     runs-on: macos-latest
     env:
@@ -74,15 +54,12 @@ jobs:
 
   release:
     if: startsWith(github.ref, 'refs/tags/v')
-    needs: [build-windows, build-macos-intel, build-macos-silicon]
+    needs: [build-windows, build-macos-silicon]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v4
         with:
           name: ftool-windows
-      - uses: actions/download-artifact@v4
-        with:
-          name: ftool-macos-intel
       - uses: actions/download-artifact@v4
         with:
           name: ftool-macos-silicon
